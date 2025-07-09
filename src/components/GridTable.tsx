@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Papa from "papaparse";
 import { AgGridReact } from "ag-grid-react";
-import { GridHeader } from "../utils/GridHeader";
-import { GridValue } from "../domain/data";
+import {
+  defaultColDef,
+  GridHeader,
+  paginationPageSize,
+} from "../utils/agGridConfig";
+import { GridValue } from "../domain/types";
 import {
   GridApi,
   GridReadyEvent,
@@ -10,6 +13,7 @@ import {
   AllCommunityModule,
 } from "ag-grid-community";
 import "../styles/ag-custom.scss";
+import { handleCSVRead } from "../application/csvReaderService";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -17,39 +21,30 @@ const GridTable: React.FC = () => {
   const [data, setData] = useState<GridValue[]>([]);
   const [gridApi, setGridApi] = useState<GridApi | null>(null);
 
-  const handleCSVRead = () => {
-    fetch("/ReactDataTest_Input.csv")
-      .then((res) => res.text())
-      .then((text) => {
-        const result = Papa.parse<GridValue>(text, {
-          header: true,
-          skipEmptyLines: true,
-        });
-        setData(result.data);
-      });
-  };
-
   const onGridReady = (params: GridReadyEvent) => {
     setGridApi(params.api);
     params.api.sizeColumnsToFit();
   };
 
   useEffect(() => {
-    handleCSVRead();
+    const fetchData = async () => {
+      const csvData = await handleCSVRead();
+      setData(csvData);
+    };
+
+    fetchData();
   }, []);
 
   return (
-
-      <AgGridReact
-        rowData={data}
-        columnDefs={GridHeader}
-        onGridReady={onGridReady}
-        defaultColDef={{ sortable: true }}
-        pagination={true}
-        paginationPageSize={20}
-        domLayout="autoHeight"
-      />
-
+    <AgGridReact
+      rowData={data}
+      columnDefs={GridHeader}
+      onGridReady={onGridReady}
+      defaultColDef={defaultColDef}
+      pagination={true}
+      paginationPageSize={paginationPageSize}
+      domLayout="autoHeight"
+    />
   );
 };
 
