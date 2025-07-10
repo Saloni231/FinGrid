@@ -8,7 +8,6 @@ export const GridHeader: ColDef[] = [
   {
     field: "ISIN",
     headerName: "ISIN",
-    sort: "asc",
     comparator: stringValueComparator,
   },
   {

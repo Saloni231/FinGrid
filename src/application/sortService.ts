@@ -1,5 +1,5 @@
 export const numericValueComparator = (a: string, b: string) => {
-  return parseInt(a) - parseInt(b);
+  return parseFloat(a) - parseFloat(b);
 };
 
 export const stringValueComparator = (a: string, b: string) => {
