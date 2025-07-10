@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import {
-  defaultColDef,
-  GridHeader,
-  paginationPageSize,
-} from "../utils/agGridConfig";
-import { GridValue } from "../domain/types";
-import {
   GridReadyEvent,
   ModuleRegistry,
   AllCommunityModule,
 } from "ag-grid-community";
-import "../styles/ag-custom.scss";
-import { handleCSVRead } from "../application/csvReaderService";
-import FilterBox from "./FilterBox";
+
 import {
-  filterDataOnFields,
-} from "../application/filterDataService";
-import ContractSizeButtons from "./ContractSizeButtons";
-import { contractSizeService } from "../application/contractSizeService";
+  defaultColDef,
+  GridHeader,
+  paginationPageSize,
+} from "../utils/agGridConfig";
+
+import { GridValue } from "../domain/types";
 import { isNumeric } from "../domain/validator";
+
+import { handleCSVRead } from "../application/csvReaderService";
+import { filterDataOnFields } from "../application/filterDataService";
+import { contractSizeService } from "../application/contractSizeService";
+
+import FilterBox from "./FilterBox";
+import ContractSizeButtons from "./ContractSizeButtons";
+
+import "../styles/ag-custom.scss";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const GridTable: React.FC = () => {
   const [data, setData] = useState<GridValue[]>([]);
   const [filterData, setFilterData] = useState<GridValue[]>([]);
-  const [contractSizeFilter, setContractSizeFilter] = useState("");
-  const [ISINFilter, setISINFilter] = useState("");
-  const [CFICodeFilter, setCFICodeFilter] = useState("");
-  const [VenueFilter, setVenueFilter] = useState("");
+  const [filters, setFilters] = useState({
+    ISIN: "",
+    CFICode: "",
+    Venue: "",
+    ContractSize: "",
+  });
+
+  const handleFilterChange = (field: keyof typeof filters, value: string) => {
+    setFilters((prev) => ({ ...prev, [field]: value }));
+  };
 
   const onGridReady = (params: GridReadyEvent) => {
     params.api.sizeColumnsToFit();
@@ -43,25 +52,23 @@ const GridTable: React.FC = () => {
     setData(contractSizeService(false, data, filterData));
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleContractSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (isNumeric(value)) {
-      setContractSizeFilter(value);
+      setFilters((prev) => ({ ...prev, ContractSize: value }));
     }
   };
 
   useEffect(() => {
-
     const filteringResult = filterDataOnFields(
-      ISINFilter,
-      CFICodeFilter,
-      VenueFilter,
-      contractSizeFilter,
+      filters.ISIN,
+      filters.CFICode,
+      filters.Venue,
+      filters.ContractSize,
       data
     );
-
     setFilterData(filteringResult);
-  }, [ISINFilter, CFICodeFilter, VenueFilter, contractSizeFilter, data]);
+  }, [filters, data]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,32 +84,32 @@ const GridTable: React.FC = () => {
       <div className="filter-group">
         <div>
           <FilterBox
-            filterValue={ISINFilter}
+            filterValue={filters.ISIN}
             label="Filter ISIN"
-            handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setISINFilter(e.target.value)
+            handleInputChange={(e) =>
+              handleFilterChange("ISIN", e.target.value)
             }
           />
           <FilterBox
-            filterValue={CFICodeFilter}
+            filterValue={filters.CFICode}
             label="Filter CFICode"
-            handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCFICodeFilter(e.target.value)
+            handleInputChange={(e) =>
+              handleFilterChange("CFICode", e.target.value)
             }
           />
           <FilterBox
-            filterValue={VenueFilter}
+            filterValue={filters.Venue}
             label="Filter Venue"
-            handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setVenueFilter(e.target.value)
+            handleInputChange={(e) =>
+              handleFilterChange("Venue", e.target.value)
             }
           />
         </div>
         <div>
           <FilterBox
-            filterValue={contractSizeFilter}
+            filterValue={filters.ContractSize}
             label="Contract Size >"
-            handleInputChange={handleInputChange}
+            handleInputChange={handleContractSizeChange}
           />
           <ContractSizeButtons
             increment={handleIncrement}

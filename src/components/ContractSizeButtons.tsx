@@ -1,8 +1,8 @@
 import "../styles/contract-size-buttons.scss";
 
 interface ContractSizeButtonsProps {
-  increment: Function;
-  decrement: Function;
+  increment: () => void;
+  decrement: () => void;
 }
 
 const ContractSizeButtons: React.FC<ContractSizeButtonsProps> = ({

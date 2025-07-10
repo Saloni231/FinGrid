@@ -3,7 +3,7 @@ import "../styles/filter-box.scss";
 interface FilterBoxProps {
   filterValue: string;
   label: string;
-  handleInputChange: Function;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FilterBox: React.FC<FilterBoxProps> = ({
