@@ -5,16 +5,21 @@ export const contractSizeService = (
   rowData: GridValue[],
   filterData: GridValue[]
 ): GridValue[] => {
-  const filterMap = new Map(filterData.map((item) => [item.ISIN, true]));
+  const key = (data: GridValue) => `${data.ISIN}-${data.CFICode}-${data.Venue}`;
+  const filterMap = new Map(filterData.map((item) => [key(item), true]));
 
   return rowData.map((data) => {
-    const shouldUpdate = filterMap.has(data.ISIN);
+    const shouldUpdate = filterMap.has(key(data));
     let size = parseFloat(data.ContractSize);
 
     if (shouldUpdate) {
-      size = isIncrement ? size + 10 : Math.max(0, size - 10);
+      if (isIncrement) {
+        size += 10;
+      } else if (size > 9) {
+        size -= 10;
+      }
     }
 
-    return { ...data, ContractSize: size.toFixed(2) };
+    return { ...data, ContractSize: size.toFixed(1) };
   });
 };

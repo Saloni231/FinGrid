@@ -13,8 +13,9 @@ const FilterBox: React.FC<FilterBoxProps> = ({
 }) => {
   return (
     <div className={styles.filterBox}>
-      <label>{label} </label>
+      <label htmlFor={label}>{label} </label>
       <input
+        id={label}
         type="text"
         value={filterValue}
         onChange={(e) => handleInputChange(e)}

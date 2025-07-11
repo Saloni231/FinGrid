@@ -45,7 +45,8 @@ const GridTable: React.FC = () => {
   };
 
   const handleContractSizeChange = (isIncrement: boolean) => {
-    setData(contractSizeService(isIncrement, data, filterData));
+    const updatedRows = contractSizeService(isIncrement, data, filterData);
+    setData([...updatedRows]);
   };
 
   const handleContractSizeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
