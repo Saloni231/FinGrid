@@ -75,7 +75,23 @@ The app should now be running on http://localhost:3000.
 
 The project follows **Hexagonal Architecture (Ports & Adapters)**:
 
-<pre lang="markdown"> <code> ``` src/ ├── adapters/ │ └── ui/ │ ├── components/ │ ├── constants/ │ ├── models/ │ └── styles/ ├── core/ │ ├── domain/ │ │ ├── models/ │ │ └── services/ │ └── utils/ ├── infrastructure/ │ └── csv/ └── test/ ``` </code> </pre>
+```
+src/
+├── adapters/
+│ └── ui/
+│ ├── components/
+│ ├── constants/
+│ ├── models/
+│ └── styles/
+├── core/
+│ ├── domain/
+│ │ ├── models/
+│ │ └── services/
+│ └── utils/
+├── infrastructure/
+│ └── csv/
+└── test/
+```
 
 
 ## Running Tests
