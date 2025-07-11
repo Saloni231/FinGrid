@@ -78,19 +78,20 @@ The project follows **Hexagonal Architecture (Ports & Adapters)**:
 ```
 src/
 ├── adapters/
-│ └── ui/
-│ ├── components/
-│ ├── constants/
-│ ├── models/
-│ └── styles/
+│   └── ui/
+│       ├── components/
+│       ├── constants/
+│       ├── models/
+│       └── styles/
 ├── core/
-│ ├── domain/
-│ │ ├── models/
-│ │ └── services/
-│ └── utils/
+│   ├── domain/
+│   │   ├── models/
+│   │   └── services/
+│   └── utils/
 ├── infrastructure/
-│ └── csv/
+│   └── csv/
 └── test/
+
 ```
 
 
