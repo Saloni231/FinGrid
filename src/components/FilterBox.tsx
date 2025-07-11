@@ -1,4 +1,4 @@
-import "../styles/filter-box.scss";
+import styles from "../styles/filter-box.module.scss";
 
 interface FilterBoxProps {
   filterValue: string;
@@ -12,7 +12,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({
   handleInputChange,
 }) => {
   return (
-    <div className="filterBox">
+    <div className={styles.filterBox}>
       <label>{label} </label>
       <input
         type="text"

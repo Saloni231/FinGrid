@@ -1,4 +1,4 @@
-import "../styles/contract-size-buttons.scss";
+import styles from "../styles/contract-size-buttons.module.scss";
 
 interface ContractSizeButtonsProps {
   increment: () => void;
@@ -10,7 +10,7 @@ const ContractSizeButtons: React.FC<ContractSizeButtonsProps> = ({
   decrement,
 }) => {
   return (
-    <div className="ContractSizeButtons">
+    <div className={styles.contractSizeButtons}>
       <button onClick={() => increment()}>Increment Contract Size</button>
       <button onClick={() => decrement()}>Decrement Contract Size</button>
     </div>

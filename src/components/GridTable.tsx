@@ -22,7 +22,7 @@ import { contractSizeService } from "../application/contractSizeService";
 import FilterBox from "./FilterBox";
 import ContractSizeButtons from "./ContractSizeButtons";
 
-import "../styles/ag-custom.scss";
+import styles from "../styles/grid-table.module.scss";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -44,15 +44,11 @@ const GridTable: React.FC = () => {
     params.api.sizeColumnsToFit();
   };
 
-  const handleIncrement = () => {
-    setData(contractSizeService(true, data, filterData));
+  const handleContractSizeChange = (isIncrement: boolean) => {
+    setData(contractSizeService(isIncrement, data, filterData));
   };
 
-  const handleDecrement = () => {
-    setData(contractSizeService(false, data, filterData));
-  };
-
-  const handleContractSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleContractSizeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (isNumeric(value)) {
       setFilters((prev) => ({ ...prev, ContractSize: value }));
@@ -81,7 +77,7 @@ const GridTable: React.FC = () => {
 
   return (
     <>
-      <div className="filter-group">
+      <div className={styles.filterGroup}>
         <div>
           <FilterBox
             filterValue={filters.ISIN}
@@ -109,11 +105,11 @@ const GridTable: React.FC = () => {
           <FilterBox
             filterValue={filters.ContractSize}
             label="Contract Size >"
-            handleInputChange={handleContractSizeChange}
+            handleInputChange={handleContractSizeFilter}
           />
           <ContractSizeButtons
-            increment={handleIncrement}
-            decrement={handleDecrement}
+            increment={() => handleContractSizeChange(true)}
+            decrement={() => handleContractSizeChange(false)}
           />
         </div>
       </div>

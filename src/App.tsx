@@ -1,12 +1,8 @@
-import './App.css';
-import GridTable from './components/GridTable';
+import GridTable from "./components/GridTable";
+import "./styles/ag-custom.scss";
 
 function App() {
-  return (
-    <div className="App">
-      <GridTable />
-    </div>
-  );
+  return <GridTable />;
 }
 
 export default App;

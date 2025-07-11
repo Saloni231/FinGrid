@@ -27,6 +27,6 @@ export const GridHeader: ColDef[] = [
   },
 ];
 
-export const defaultColDef = { sortable: true };
+export const defaultColDef = { sortable: true, suppressMovable: true };
 
 export const paginationPageSize = 20;
