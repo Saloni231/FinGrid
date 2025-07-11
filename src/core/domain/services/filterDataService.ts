@@ -1,4 +1,4 @@
-import { GridValue } from "@ui/models/types";
+import { GridValue } from "@core/domain/models/types";
 
 export const filterDataOnFields = (
   ISINFilter: string,

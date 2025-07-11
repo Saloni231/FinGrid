@@ -1,5 +1,5 @@
 import { contractSizeService } from "@core/domain/services/contractSizeService";
-import { GridValue } from "@ui/models/types";
+import { GridValue } from "@core/domain/models/types";
 
 const baseMockRowData: GridValue[] = [
   {

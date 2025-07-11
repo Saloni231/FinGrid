@@ -12,7 +12,7 @@ import {
   paginationPageSize,
 } from "@ui/constants/agGridConfig";
 
-import { GridValue } from "@ui/models/types";
+import { GridValue } from "@core/domain/models/types";
 import { isNumeric } from "@core/utils/validator";
 
 import { handleCSVRead } from "@infra/csv/csvReaderService";
