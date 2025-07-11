@@ -1,5 +1,5 @@
 import Papa from "papaparse";
-import { GridValue } from "../domain/types";
+import { GridValue } from "@ui/models/types";
 
 export const handleCSVRead = async (): Promise<GridValue[]> => {
   const response = await fetch("/ReactDataTest_Input.csv");

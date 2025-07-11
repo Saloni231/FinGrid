@@ -2,7 +2,7 @@ import { ColDef } from "ag-grid-community";
 import {
   numericValueComparator,
   stringValueComparator,
-} from "../application/sortService";
+} from "@core/utils/comparators";
 
 export const GridHeader: ColDef[] = [
   {

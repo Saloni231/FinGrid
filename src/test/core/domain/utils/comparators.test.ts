@@ -1,7 +1,7 @@
 import {
   numericValueComparator,
   stringValueComparator,
-} from "../../application/sortService";
+} from "@core/utils/comparators";
 
 describe("numericValueComparator", () => {
   it("returns positive when first number is greater", () => {

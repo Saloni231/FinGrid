@@ -1,5 +1,5 @@
-import { filterDataOnFields } from "../../application/filterDataService";
-import { GridValue } from "../../domain/types";
+import { filterDataOnFields } from "@core/domain/services/filterDataService";
+import { GridValue } from "@ui/models/types";
 
 const mockData: GridValue[] = [
   {

@@ -10,19 +10,19 @@ import {
   defaultColDef,
   GridHeader,
   paginationPageSize,
-} from "../utils/agGridConfig";
+} from "@ui/constants/agGridConfig";
 
-import { GridValue } from "../domain/types";
-import { isNumeric } from "../domain/validator";
+import { GridValue } from "@ui/models/types";
+import { isNumeric } from "@core/utils/validator";
 
-import { handleCSVRead } from "../application/csvReaderService";
-import { filterDataOnFields } from "../application/filterDataService";
-import { contractSizeService } from "../application/contractSizeService";
+import { handleCSVRead } from "@infra/csv/csvReaderService";
+import { filterDataOnFields } from "@core/domain/services/filterDataService";
+import { contractSizeService } from "@core/domain/services/contractSizeService";
 
-import FilterBox from "./FilterBox";
-import ContractSizeButtons from "./ContractSizeButtons";
+import FilterBox from "@ui/components/FilterBox";
+import ContractSizeButtons from "@ui/components/ContractSizeButtons";
 
-import styles from "../styles/grid-table.module.scss";
+import styles from "@ui/styles/grid-table.module.scss";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

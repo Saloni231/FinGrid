@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import GridTable from "../../components/GridTable";
-import { GridValue } from "../../domain/types";
+import { GridValue } from "@ui/models/types";
+import GridTable from "@ui/components/GridTable";
 
 const getMockCSVData = (): GridValue[] => [
   {

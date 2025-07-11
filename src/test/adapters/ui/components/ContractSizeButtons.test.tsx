@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import ContractSizeButtons from "../../components/ContractSizeButtons";
+import ContractSizeButtons from "@ui/components/ContractSizeButtons";
 
 describe("ContractSizeButtons Component", () => {
   const mockIncrement = jest.fn();

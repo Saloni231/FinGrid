@@ -18,7 +18,26 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@core/*": [
+        "core/*"
+      ],
+      "@ui/*": [
+        "adapters/ui/*"
+      ],
+      "@infra/*": [
+        "infrastructure/*"
+      ],
+      "@test/*": [
+        "test/*"
+      ]
+    }
   },
-  "include": ["src", "jest.config.ts", "jest.setup.ts"  ]
+  "include": [
+    "src",
+    "jest.config.ts",
+    "jest.setup.ts"
+  ]
 }
