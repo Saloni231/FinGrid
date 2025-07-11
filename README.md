@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+# Backlink Marketplace
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+A React + TypeScript data grid application built for the Liquid Metrix React Developer Test.  
+Implements clean, maintainable, and testable UI using **SOLID principles**, **hexagonal architecture**, and **modular components**.
 
-In the project directory, you can run:
+### Key Features:
 
-### `npm start`
+- **Sortable Columns**: Click on column headers to toggle ascending/descending order
+- **Filter by ContractSize**: Show only rows with `ContractSize > X`
+- **Increment/Decrement Buttons**: Modify the ContractSize threshold in steps of 10
+- **Input Validation**: ContractSize input blocks non-numeric characters
+- **Bonus**: Text filters for `ISIN`, `CFICode`, and `Venue`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation & Setup
 
-### `npm test`
+### Requirements:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (>=16.x.x)
+- npm or yarn
 
-### `npm run build`
+### Steps to Run Locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the Repository:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/Saloni231/FinGrid.git
+   cd FinGrid
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
 
-### `npm run eject`
+2. **Install Dependencies:**
+   If you're using npm:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   npm install
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   Or if you're using yarn:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   yarn install
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. **Start the Development Server:**
 
-## Learn More
+   ```bash
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   Or if you're using yarn:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   yarn dev
+   ```
+
+The app should now be running on http://localhost:3000.
+
+### Technologies Used
+
+| Technology                  | Purpose                                                     |
+| --------------------------- | ----------------------------------------------------------- |
+| **React**                   | Frontend library for building UI components                 |
+| **TypeScript**              | Static typing for safer, more predictable JavaScript        |
+| **Jest**                    | Unit testing framework                                      |
+| **React Testing Library**   | For writing behavior-driven unit tests for React components |
+| **CSS Modules / Plain CSS** | Scoped styles for individual components                     |
+| **Hexagonal Architecture**  | Clean separation of UI, logic, and infrastructure           |
+| **SOLID Principles**        | Ensures maintainability, scalability, and testability       |
+
+## Project Architecture
+
+The project follows **Hexagonal Architecture (Ports & Adapters)**:
+
+src/
+├── adapters/
+│   └── ui/
+│       ├── components/
+│       ├── constants/
+│       ├── models/
+│       └── styles/
+├── core/
+│   ├── domain/
+│   │   ├── models/
+│   │   └── services/
+│   └── utils/
+├── infrastructure/
+│   └── csv/
+└── test/
+
+
+## Running Tests
+
+This project includes unit tests using **Jest** and **React Testing Library**.
+
+```bash
+npm test
+# or
+yarn test
+```
