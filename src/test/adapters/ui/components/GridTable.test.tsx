@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { GridValue } from "@core/domain/models/types";
-import GridTable from "@ui/components/GridTable";
+import { GridValue } from "../../../../core/domain/models/types";
+import GridTable from "../../../../adapters/ui/components/GridTable";
 
 const getMockCSVData = (): GridValue[] => [
   {
@@ -17,11 +17,11 @@ const getMockCSVData = (): GridValue[] => [
   },
 ];
 
-jest.mock("../../application/csvReaderService", () => ({
+jest.mock("../../../../infrastructure/csv/csvReaderService", () => ({
   handleCSVRead: jest.fn(() => Promise.resolve(getMockCSVData())),
 }));
 
-describe("GridTable Component (with real AG Grid)", () => {
+describe("GridTable Component", () => {
   it("renders grid with CSV data", async () => {
     render(<GridTable />);
 

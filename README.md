@@ -81,7 +81,7 @@ src/
 │   └── ui/
 │       ├── components/
 │       ├── constants/
-│       ├── models/
+│       ├── hooks/
 │       └── styles/
 ├── core/
 │   ├── domain/

@@ -1,4 +1,5 @@
-import { isNumeric } from "@core/utils/validator";
+import { isNumeric } from "../../../../core/utils/validator";
+
 
 describe("isNumeric", () => {
   it("returns true for valid integers", () => {

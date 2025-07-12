@@ -1,4 +1,4 @@
-import styles from "@ui/styles/filter-box.module.scss";
+import styles from "../styles/filter-box.module.scss";
 
 interface FilterBoxProps {
   filterValue: string;

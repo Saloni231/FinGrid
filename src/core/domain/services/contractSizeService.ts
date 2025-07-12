@@ -1,4 +1,4 @@
-import { GridValue } from "@core/domain/models/types";
+import { GridValue } from "../../../core/domain/models/types";
 
 export const contractSizeService = (
   isIncrement: boolean,

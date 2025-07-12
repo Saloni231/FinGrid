@@ -4,3 +4,10 @@ export interface GridValue {
     Venue: string;
     ContractSize: string;
 }
+
+export type GridFilters = {
+  ISIN: string;
+  CFICode: string;
+  Venue: string;
+  ContractSize: string;
+};

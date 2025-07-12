@@ -1,7 +1,5 @@
-import {
-  numericValueComparator,
-  stringValueComparator,
-} from "@core/utils/comparators";
+import { numericValueComparator, stringValueComparator } from "../../../../core/utils/comparators";
+
 
 describe("numericValueComparator", () => {
   it("returns positive when first number is greater", () => {

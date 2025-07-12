@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import FilterBox from "@ui/components/FilterBox";
+import FilterBox from "../../../../adapters/ui/components/FilterBox";
 
 describe("FilterBox Component", () => {
   const mockInputChange = jest.fn();

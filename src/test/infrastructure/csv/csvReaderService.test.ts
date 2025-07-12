@@ -1,4 +1,5 @@
-import { handleCSVRead } from "@infra/csv/csvReaderService";
+import { handleCSVRead } from "../../../infrastructure/csv/csvReaderService";
+
 
 describe("handleCSVRead", () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import styles from "@ui/styles/contract-size-buttons.module.scss";
+import styles from "../styles/contract-size-buttons.module.scss";
 
 interface ContractSizeButtonsProps {
   increment: () => void;

@@ -1,5 +1,5 @@
-import GridTable from "@ui/components/GridTable";
-import "@ui/styles/ag-custom.scss";
+import GridTable from "./adapters/ui/components/GridTable";
+import "./adapters/ui/styles/ag-custom.scss";
 
 function App() {
   return <GridTable />;

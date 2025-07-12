@@ -1,80 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AgGridReact } from "ag-grid-react";
-import {
-  GridReadyEvent,
-  ModuleRegistry,
-  AllCommunityModule,
-} from "ag-grid-community";
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+
+import FilterBox from "./FilterBox";
+import ContractSizeButtons from "./ContractSizeButtons";
 
 import {
   defaultColDef,
   GridHeader,
   paginationPageSize,
-} from "@ui/constants/agGridConfig";
+} from "../constants/agGridConfig";
 
-import { GridValue } from "@core/domain/models/types";
-import { isNumeric } from "@core/utils/validator";
+import { useGridData } from "../hooks/useGridData";
 
-import { handleCSVRead } from "@infra/csv/csvReaderService";
-import { filterDataOnFields } from "@core/domain/services/filterDataService";
-import { contractSizeService } from "@core/domain/services/contractSizeService";
-
-import FilterBox from "@ui/components/FilterBox";
-import ContractSizeButtons from "@ui/components/ContractSizeButtons";
-
-import styles from "@ui/styles/grid-table.module.scss";
+import styles from "../styles/grid-table.module.scss";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const GridTable: React.FC = () => {
-  const [data, setData] = useState<GridValue[]>([]);
-  const [filterData, setFilterData] = useState<GridValue[]>([]);
-  const [filters, setFilters] = useState({
-    ISIN: "",
-    CFICode: "",
-    Venue: "",
-    ContractSize: "",
-  });
+  const {
+    filters,
+    filterData,
+    onGridReady,
+    handleContractSizeChange,
+    handleContractSizeFilter,
+    handleFilterChange,
+  } = useGridData();
 
-  const handleFilterChange = (field: keyof typeof filters, value: string) => {
-    setFilters((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const onGridReady = (params: GridReadyEvent) => {
-    params.api.sizeColumnsToFit();
-  };
-
-  const handleContractSizeChange = (isIncrement: boolean) => {
-    const updatedRows = contractSizeService(isIncrement, data, filterData);
-    setData([...updatedRows]);
-  };
-
-  const handleContractSizeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (isNumeric(value)) {
-      setFilters((prev) => ({ ...prev, ContractSize: value }));
-    }
-  };
-
-  useEffect(() => {
-    const filteringResult = filterDataOnFields(
-      filters.ISIN,
-      filters.CFICode,
-      filters.Venue,
-      filters.ContractSize,
-      data
-    );
-    setFilterData(filteringResult);
-  }, [filters, data]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const csvData = await handleCSVRead();
-      setData(csvData);
-    };
-
-    fetchData();
-  }, []);
+  const handleIncrement = () => handleContractSizeChange(true);
+  const handleDecrement = () => handleContractSizeChange(false);
 
   return (
     <>
@@ -109,8 +63,8 @@ const GridTable: React.FC = () => {
             handleInputChange={handleContractSizeFilter}
           />
           <ContractSizeButtons
-            increment={() => handleContractSizeChange(true)}
-            decrement={() => handleContractSizeChange(false)}
+            increment={handleIncrement}
+            decrement={handleDecrement}
           />
         </div>
       </div>
