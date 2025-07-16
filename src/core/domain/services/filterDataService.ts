@@ -4,8 +4,7 @@ export const filterDataOnFields = (
   filters: GridFilters,
   rowData: GridValue[]
 ): GridValue[] => {
-
-  const {ISIN, CFICode, Venue, ContractSize} = filters
+  const { ISIN, CFICode, Venue, ContractSize } = filters;
 
   const isin = ISIN.toLowerCase();
   const cfi = CFICode.toLowerCase();
@@ -17,7 +16,7 @@ export const filterDataOnFields = (
     const matchesCFI = CFICode.toLowerCase().includes(cfi);
     const matchesVenue = Venue.toLowerCase().includes(venue);
     const matchesContractSize =
-      !contractSize || (parseFloat(ContractSize) > contractSize);
+      !contractSize || parseFloat(ContractSize) > contractSize;
 
     return matchesISIN && matchesCFI && matchesVenue && matchesContractSize;
   });

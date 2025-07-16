@@ -18,7 +18,7 @@ const getMockCSVData = (): GridValue[] => [
 ];
 
 jest.mock("../../../../infrastructure/csv/csvReaderService", () => ({
-  handleCSVRead: jest.fn(() => Promise.resolve(getMockCSVData())),
+  handleCSVRead: () => Promise.resolve(getMockCSVData())
 }));
 
 describe("GridTable Component", () => {

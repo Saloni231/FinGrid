@@ -1,7 +1,6 @@
 import { GridValue } from "../../../../core/domain/models/types";
 import { filterDataOnFields } from "../../../../core/domain/services/filterDataService";
 
-
 const mockData: GridValue[] = [
   {
     ISIN: "DE000C4SA5W8",

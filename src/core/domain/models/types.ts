@@ -1,8 +1,8 @@
 export interface GridValue {
-    ISIN: string;
-    CFICode: string;
-    Venue: string;
-    ContractSize: string;
+  ISIN: string;
+  CFICode: string;
+  Venue: string;
+  ContractSize: string;
 }
 
 export type GridFilters = {
